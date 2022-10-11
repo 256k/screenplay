@@ -10,6 +10,8 @@
 function init() 
   params:add_number("screenToggle","screenToggle",0,1,1)
   g = grid.connect()
+  gridX = g.device.cols
+  gridY = g.device.rows
   myChar = 47
   charLight = 5
   framerate = 15
@@ -56,7 +58,7 @@ end
 
 
 function gridredraw()
-  g:led(math.random(1,16), math.random(1,8), math.random(0,charLight))
+  g:led(math.random(1,gridX), math.random(1,gridY), math.random(0,charLight))
   g:refresh()
 end
 
