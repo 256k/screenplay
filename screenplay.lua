@@ -10,11 +10,11 @@
 function init() 
   params:add_number("screenToggle","screenToggle",0,1,1)
   g = grid.connect()
-  gridX = g.device.cols
-  gridY = g.device.rows
+  gridX = g.cols
+  gridY = g.rows
   myChar = 47
   charLight = 5
-  framerate = 15
+  framerate = 60
   clock.run(function()  -- redraw the screen 
     while true do
       clock.sleep(1/framerate)
@@ -26,8 +26,7 @@ end
 
 function key(n,z)
   if n==1 and z==1 then
-    local index = math.random(1, 10000);
-    _norns.screen_export_png("/home/we/dust/screenshots/" .. index .. ".png")
+    screen.export_screenshot(os.time())
     print("screenshot taken")
   end
   
@@ -58,7 +57,9 @@ end
 
 
 function gridredraw()
+  if gridX > 0 and gridY > 0 then
   g:led(math.random(1,gridX), math.random(1,gridY), math.random(0,charLight))
   g:refresh()
+  end
 end
 
